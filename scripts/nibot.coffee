@@ -120,7 +120,8 @@ module.exports = (robot) ->
     show_result = (res, dialog) ->
 
         envelope = {
-            room: 'CBGG0ANU8',
+            #room: 'CBGG0ANU8', #早川研workspace
+            room: 'CC06KR0CX', #mugigomagen
         }
         postData = {
             text: p.generate()
