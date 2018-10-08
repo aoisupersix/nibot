@@ -83,7 +83,7 @@ module.exports = (robot) ->
     #一言の入力
     input_oneThing = (res, dialog) ->
         res.send '「今日のひとこと」を入力してください。▼ '
-        dialog.addChoice /(.*)/, (res2) ->
+        dialog.addChoice /((.*\s*)+)/i, (res2) ->
             p.oneThing = trim_input res2.match[1]
             input_plansToday res2, dialog
             #show_result res2, dialog
@@ -91,28 +91,28 @@ module.exports = (robot) ->
     #今日やる予定だったことの入力
     input_plansToday = (res, dialog) ->
         res.send '「今日やる予定だったこと」を入力してください。▼'
-        dialog.addChoice /(.+)/, (res2) ->
+        dialog.addChoice /((.*\s*)+)/i, (res2) ->
             p.plansToday = trim_input res2.match[1]
             input_doingToday res2, dialog
 
     #今日やったことの入力
     input_doingToday = (res, dialog) ->
         res.send '「今日やったこと」を入力してください。▼'
-        dialog.addChoice /(.+)/, (res2) ->
+        dialog.addChoice /((.*\s*)+)/i, (res2) ->
             p.doingToday = trim_input res2.match[1]
             input_comment res2, dialog
 
     #コメントの入力
     input_comment = (res, dialog) ->
         res.send '「困ったこと・学んだこと・共有したいこと」を入力してください。▼'
-        dialog.addChoice /(.+)/, (res2) ->
+        dialog.addChoice /((.*\s*)+)/i, (res2) ->
             p.comment = trim_input res2.match[1]
             input_plansTomorrow res2, dialog
     
     #明日やる予定のことの入力
     input_plansTomorrow = (res, dialog) ->
         res.send '「明日やる予定のこと」を入力してください。▼'
-        dialog.addChoice /(.+)/, (res2) ->
+        dialog.addChoice /((.*\s*)+)/i, (res2) ->
             p.plansTomorrow = trim_input res2.match[1]
             show_result res2, dialog
 
